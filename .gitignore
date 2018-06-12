@@ -1,3 +1,5 @@
 images/*
+!images/.gitkeep
 scans/*
+!scans/.gitkeep
 decoded_qr_codes.csv
