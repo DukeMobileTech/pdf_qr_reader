@@ -8,6 +8,9 @@ if test ! $(which brew); then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+# Install command line tools
+xcode-select --install
+
 # Update homebrew recipes
 brew update
 
@@ -16,9 +19,11 @@ brew install bash
 
 PACKAGES=(
     cmake
+    pkg-config
     imagemagick@6
     ghostscript
     xpdf
+    openssl
 )
 
 echo "Installing packages..."

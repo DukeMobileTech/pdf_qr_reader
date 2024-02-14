@@ -3,3 +3,4 @@ images/*
 scans/*
 !scans/.gitkeep
 decoded_qr_codes.csv
+.DS_Store

@@ -2,6 +2,7 @@ require 'grim'
 require 'zxing'
 require 'rmagick'
 require 'csv'
+require 'rtesseract'
 
 CSV.open('decoded_qr_codes.csv', 'wb') do |csv|
   csv << ['page', 'id']
@@ -17,10 +18,12 @@ CSV.open('decoded_qr_codes.csv', 'wb') do |csv|
         image.write("#{filename}-crop.png") # Save QR Code as image
         decoded_string = ZXing.decode("#{filename}-crop.png") # Decode QR Code in page
         decoded_string = 'Not Found' if decoded_string.nil? || decoded_string.empty?
-        File.delete("#{filename}-crop.png")
+        # File.delete("#{filename}-crop.png")
       end
       csv << ["#{pdf_file.split('/').last.split('.').first}-#{page.number}", decoded_string]
-      File.delete(filename)
+      # File.delete(filename)
+      rimage = RTesseract.new(filename)
+      puts rimage.to_s
     end
   end
 end
